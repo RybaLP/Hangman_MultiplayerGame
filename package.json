@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "dev:socket":"set NODE_OPTIONS=--loader ts-node/esm --trace-warnings --no-warnings && ts-node server.mts",
-    "build": "next build",
+    "dev:socket": "set NODE_OPTIONS=--loader ts-node/esm --trace-warnings --no-warnings && ts-node server.mts",
+    "build": "tsc && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "mongodb": "^6.13.1",
+    "mongoose": "^8.10.1",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -22,6 +24,7 @@
     "@types/node": "^20.17.19",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
@@ -29,5 +32,4 @@
     "typescript": "^5"
   },
   "type": "module"
-
 }

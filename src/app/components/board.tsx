@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const Board = () => {
-    const password : string = "elozelo";
-
-  return (
-    <div className='flex justify-center pb-10 pt-10]'>
-        <label>{password}</label>
-    </div>
-  )
+interface BoardProps{
+  hashedPassword : string;
+  guessedLetters: string[];
 }
 
-export default Board
+const Board : React.FC<BoardProps> = ({hashedPassword, guessedLetters}) => {
+  return(
+    <div className="text-4xl font-mono">
+      {hashedPassword}
+    </div>
+  );
+}
+
+
+export default Board;

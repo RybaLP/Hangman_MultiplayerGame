@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const Gallows = () => {
-  return (
-    <div className='w-[400px] h-[100px]'>
-        <img width={'400px'}src='/s0.jpg'></img>
-    </div>
-  )
+interface GallowsProps {
+    incorrectAttempts : number;
 }
 
-export default Gallows
+const Gallows : React.FC<GallowsProps> = ({incorrectAttempts}) => {
+   const imageSrc = `/s${incorrectAttempts}.jpg`;
+
+   return(
+    <div className="w-[400px] h-[100px]">
+      <img width={'400px'} src={imageSrc} alt={`Szubienica ${incorrectAttempts}/9`} />
+    </div>
+   );
+}
+
+export default Gallows;
