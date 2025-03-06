@@ -166,7 +166,7 @@ app.prepare().then(async () => {
     });
   });
 
-  httpServer.listen(port, () => {
+  httpServer.listen(port, () => {              
     console.log("server is running");
   });
 });

@@ -5,8 +5,10 @@ import Board from "./components/board";
 import Entergame from "./components/entergame";
 import { useEffect, useState } from "react";
 import { socket } from "../../lib/socketClient";
+import Waiting from "./components/waiting";
 
 export default function Home() {
+  
   const [isJoined, setIsJoined] = useState(false);
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
@@ -47,12 +49,12 @@ export default function Home() {
       setHashedPassword(roomState.hashedPassword);
       setGuessedLetters(roomState.guessedLetters);
       setIncorrectAttempts(roomState.incorrectAttempts);
-      // Dodaj logikę do wyświetlania informacji o wygranej/przegranej
+    
     });
 
     socket.on("user-joined", (roomState) => {
       if (roomState.players.length === 1 && isJoined) {
-        setIsWaiting(true); // Ustawienie isWaiting na true
+        setIsWaiting(true); 
       }
     });
 
@@ -81,13 +83,14 @@ export default function Home() {
         {isJoined ? (
           <>
             {isWaiting ? (
-              <div className="text-4xl font-mono">Oczekiwanie na drugiego gracza...</div>
+              <Waiting room={room}/>
             ) : (
               <>
                 <Board hashedPassword={hashedPassword} guessedLetters={guessedLetters} />
                 <div className="flex justify-center mt-10 gap-10">
                   <Gallows incorrectAttempts={incorrectAttempts} />
                   <Letters
+                    guessedLetters = {guessedLetters}
                     clickedLetters={clickedLetters}
                     handleLetterClick={handleLetterClick}
                     disabled={gameState !== "started" || currentPlayer !== socket.id}
